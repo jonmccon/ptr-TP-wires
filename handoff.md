@@ -182,12 +182,12 @@ Internal tags that travel with a case in addition to the workflow stage. The CSV
 | `docs-in` | All Docs In |`#F8B4DA / #7A1A55` |
 | `future` | Future TP |  `#6B3A1F / #FFFFFF` |
 | `ths` | Pending THS |`#F2EE3D / #3A3A20` |
-| `pcom` | PCOM |       `#22D33C / #0E3F18` |
+| `pcom` | PCOM | `#22D33C / #0E3F18` |
 | `reso` | Pending Reso | `#2247E0 / #FFFFFF` |
 | `sev` | Severance |  `#F2C12B / #3A2A00` |
-| `pstart` | Pending Start',  `#3DE0B1 / #0A4634` |
+| `pstart` | Pending Start |  `#3DE0B1 / #0A4634` |
 | `progress` | In Progress |`#7CBEF5 / #103A6A` |
-| `rad` | RAD |        `#D6E866 / #3A4D00` |
+| `rad` | RAD | `#D6E866 / #3A4D00` |
 | `no-tp` | No TP Sold | `#BAA7A2 / #3A2A28` |
 | `delq` | Delinquent | `#F8A8A0 / #7A1A12` |
 
