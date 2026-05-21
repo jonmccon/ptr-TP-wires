@@ -175,19 +175,21 @@ Implement as a `Status` model seeded via a data migration. The letter, label, an
 
 Internal tags that travel with a case in addition to the workflow stage. The CSV uses them as status values but in production they should be a separate `tags[]` (many-to-many) relation. Today they include: `Tri-Cities`, `Ready for Review`, `All Docs In`, `Future TP`, `Pending THS`, `PCOM`, `Pending Reso`, `Severance`, `Pending Start`, `In Progress`, `RAD`, `No TP Sold`, `Delinquent`. Each has a bespoke color (full registry in the prototype's `data.js → STATUS`).
 
-  'tri':       { label: 'Tri-Cities',     bg: '#CFEACB', fg: '#2E5A2B' },
-  'ready':     { label: 'Ready for Review', bg: '#E6D8F2', fg: '#5A3A78' },
-  'docs-in':   { label: 'All Docs In',     bg: '#F8B4DA', fg: '#7A1A55' },
-  'future':    { label: 'Future TP',       bg: '#6B3A1F', fg: '#FFFFFF' },
-  'ths':       { label: 'Pending THS',     bg: '#F2EE3D', fg: '#3A3A20' },
-  'pcom':      { label: 'PCOM',            bg: '#22D33C', fg: '#0E3F18' },
-  'reso':      { label: 'Pending Reso',    bg: '#2247E0', fg: '#FFFFFF' },
-  'sev':       { label: 'Severance',       bg: '#F2C12B', fg: '#3A2A00' },
-  'pstart':    { label: 'Pending Start',   bg: '#3DE0B1', fg: '#0A4634' },
-  'progress':  { label: 'In Progress',     bg: '#7CBEF5', fg: '#103A6A' },
-  'rad':       { label: 'RAD',             bg: '#D6E866', fg: '#3A4D00' },
-  'no-tp':     { label: 'No TP Sold',      bg: '#BAA7A2', fg: '#3A2A28' },
-  'delq':      { label: 'Delinquent',      bg: '#F8A8A0', fg: '#7A1A12' },
+| Key | Label | UI color (bg / fg)
+|---|---|---|---|
+| `tri` | Tri-Cities | `#CFEACB / #2E5A2B` |
+| `ready` | Ready for Review | `#E6D8F2 / #5A3A78` |
+| `docs-in` | All Docs In |`#F8B4DA / #7A1A55` |
+| `future` | Future TP |  `#6B3A1F / #FFFFFF` |
+| `ths` | Pending THS |`#F2EE3D / #3A3A20` |
+| `pcom` | PCOM |       `#22D33C / #0E3F18` |
+| `reso` | Pending Reso | `#2247E0 / #FFFFFF` |
+| `sev` | Severance |  `#F2C12B / #3A2A00` |
+| `pstart` | Pending Start',  `#3DE0B1 / #0A4634` |
+| `progress` | In Progress |`#7CBEF5 / #103A6A` |
+| `rad` | RAD |        `#D6E866 / #3A4D00` |
+| `no-tp` | No TP Sold | `#BAA7A2 / #3A2A28` |
+| `delq` | Delinquent | `#F8A8A0 / #7A1A12` |
 
 ### 4.3 Action buckets (the "Action" grouping)
 
