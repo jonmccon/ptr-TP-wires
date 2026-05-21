@@ -175,8 +175,8 @@ Implement as a `Status` model seeded via a data migration. The letter, label, an
 
 Internal tags that travel with a case in addition to the workflow stage. The CSV uses them as status values but in production they should be a separate `tags[]` (many-to-many) relation. Today they include: `Tri-Cities`, `Ready for Review`, `All Docs In`, `Future TP`, `Pending THS`, `PCOM`, `Pending Reso`, `Severance`, `Pending Start`, `In Progress`, `RAD`, `No TP Sold`, `Delinquent`. Each has a bespoke color (full registry in the prototype's `data.js → STATUS`).
 
-| Key | Label | UI color (bg / fg)
-|---|---|---|---|
+| Key | Label | UI color (bg / fg) |
+|---|---|---|
 | `tri` | Tri-Cities | `#CFEACB / #2E5A2B` |
 | `ready` | Ready for Review | `#E6D8F2 / #5A3A78` |
 | `docs-in` | All Docs In |`#F8B4DA / #7A1A55` |
