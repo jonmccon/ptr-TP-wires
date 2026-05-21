@@ -1,5 +1,7 @@
 # TP Prioritize
 
+Prototype https://jonmccon.github.io/ptr-TP-wires/
+
 > A clickable hi-fi prototype for the Priority Tax Relief tax-prep team's individual case-work inbox.
 
 This is a **prototype wireframe**, not a production app. It exists to confirm UX assumptions before backend build — specifically how a preparer should see their assigned queue, how multi-case work should flow, and how the messy spreadsheet status taxonomy should map to a usable interface.
