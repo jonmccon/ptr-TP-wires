@@ -1,0 +1,239 @@
+/* ============================================================
+   PTR Daisy Design System — colors & type
+   Theme name: "PTR" (a DaisyUI v5 theme)
+   Source: PTR.tokens.json + Brand Guides figma + saadeghi/daisyui
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Source+Code+Pro:wght@300..700&family=Outfit:wght@400..700&display=swap");
+
+:root {
+  /* ----- Brand colors (Pantone-mapped) ----- */
+  --ptr-black:        #000000;   /* PMS BLACK C */
+  --ptr-ink:          #141515;   /* PMS 419 C — near-black used on dark surfaces */
+  --ptr-graphite:     #33332F;   /* PMS BLACK 7 C — warm dark grey */
+  --ptr-stone:        #B9B9B2;   /* PMS Cool Gray 4 CP */
+  --ptr-bone:         #EBEBDC;   /* PMS P 3-9 C — warm cream */
+  --ptr-white:        #FFFFFF;
+
+  --ptr-green:        #047B44;   /* PMS 355 C — PRIMARY brand green */
+  --ptr-green-deep:   #013017;   /* PMS 3537 CP — backgrounds */
+  --ptr-green-bright: #0CCF76;   /* PMS 353 C — highlight */
+
+  --ptr-orange:       #FE5000;   /* PMS ORANGE 021 C — ACCENT, used sparingly */
+  --ptr-orange-deep:  #4F1200;   /* PMS 732 C — orange-on-dark */
+  --ptr-coral:        #FF9789;   /* PMS 1625 C — soft accent */
+
+  /* ----- DaisyUI semantic tokens (PTR theme) ----- */
+  --color-base-100:        #FFFFFF;
+  --color-base-200:        #F4F4F4;
+  --color-base-300:        #C6C6C6;
+  --color-base-400:        #757575;
+  --color-base-content:    #1E1E1E;
+
+  --color-primary:         #086033;   /* token primary (slightly deeper than brand green) */
+  --color-primary-content: #FFFFFF;
+
+  --color-secondary:       #78226D;
+  --color-secondary-content:#FFFFFF;
+
+  --color-accent:          #EF3F2B;
+  --color-accent-content:  #000000;
+
+  --color-neutral:         #1E1E1E;
+  --color-neutral-content: #FFFFFF;
+
+  --color-info:            #BFE1F6;
+  --color-info-content:    #325DBE;
+
+  --color-success:         #98DE96;
+  --color-success-content: #40723F;
+
+  --color-warning:         #F8E59D;
+  --color-warning-content: #793205;
+
+  --color-error:           #FB8A88;
+  --color-error-content:   #4D0218;
+
+  /* ----- Case-status colors (product-specific) ----- */
+  --case-new:     #FFFFFF;
+  --case-ready:   #40723F;
+  --case-tp:      #78226D;
+  --case-audit:   #AA3C00;
+  --case-dead:    #B10202;
+  --case-review:  #FBCE2B;
+  --case-hold:    #939393;
+  --case-pending: #325DBE;
+
+  /* ----- Radii (DaisyUI maps) ----- */
+  --radius-field:    4px;   /* inputs, selects */
+  --radius-selector: 4px;   /* checkboxes, radios, toggles */
+  --radius-box:      8px;   /* cards, modals, alerts */
+  --border-width:    2px;
+
+  /* ----- Type families ----- */
+  --font-sans:    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif:   "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono:    "Source Code Pro", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-spec:    "Outfit", ui-sans-serif, system-ui, sans-serif; /* small technical labels (measure guides) */
+
+  /* ----- Display scale (1920 grid) ----- */
+  --fs-display:   96px;   --lh-display: 98px;   --ls-display: -0.01em;   /* big-headline */
+  --fs-h1:        64px;   --lh-h1: 1.05;
+  --fs-h2:        42px;   --lh-h2: 46px;
+  --fs-h3:        28px;   --lh-h3: 34px;        --ls-h3: 0.01em;
+  --fs-h4:        24px;   --lh-h4: 1.25;
+  --fs-lead:      28px;   --lh-lead: 34px;
+  --fs-body:      16px;   --lh-body: 1.5;
+  --fs-small:     14px;   --lh-small: 1.4;
+  --fs-tiny:      12px;   --lh-tiny: 1.4;
+
+  /* ----- Spacing ----- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --slide-pad: 36px;          /* outer slide margin used throughout figma */
+
+  /* ----- Shadows (subtle, daisyUI-style flat) ----- */
+  --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg:  0 10px 25px -5px rgb(0 0 0 / 0.10), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+/* ============================================================
+   Semantic element styles
+   ============================================================ */
+
+html, body {
+  font-family: var(--font-sans);
+  color: var(--color-base-content);
+  background: var(--color-base-100);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ptr-display,
+h1.ptr-display {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--ptr-black);
+  text-wrap: balance;
+}
+
+h1, .ptr-h1 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: -0.01em;
+}
+
+h2, .ptr-h2 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  text-wrap: balance;
+}
+
+h3, .ptr-h3 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
+}
+
+h4, .ptr-h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+}
+
+p, .ptr-body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+}
+
+.ptr-lead {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  letter-spacing: 0.01em;
+}
+
+.ptr-pullquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.ptr-callout {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 24px;
+}
+
+code, .ptr-code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+
+.ptr-eyebrow {
+  font-family: var(--font-spec);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ptr-graphite);
+}
+
+.ptr-measure-label {           /* the cyan technical labels seen on logo guides */
+  font-family: var(--font-spec);
+  font-size: 8px;
+  letter-spacing: 1em;
+  color: var(--ptr-graphite);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--ptr-green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color 120ms ease, text-decoration-thickness 120ms ease;
+}
+a:hover { color: var(--ptr-green-deep); text-decoration-thickness: 2px; }
+a:active { color: var(--ptr-orange); }
+
+/* ----- selection ----- */
+::selection { background: var(--ptr-orange); color: #fff; }
+
+/* ----- footer rule used across the deck ----- */
+.ptr-deck-footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  border-top: 1px solid currentColor;
+  padding-top: 12px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
