@@ -395,6 +395,67 @@ The visual language is **PTR Daisy** — a DaisyUI-themed system documented at `
 
 ---
 
+### 7.1 DaisyUI component map
+
+The prototype hand-rolled CSS for every surface. In the Django build, **replace each hand-rolled element with the corresponding DaisyUI v5 component class**. This table is the canonical mapping. When in doubt, the prototype's visual is the target; the DaisyUI class is the mechanism.
+
+| Surface | DaisyUI component | Modifiers / variants | Notes |
+|---|---|---|---|
+| **Global** | | | |
+| Page chrome (top bar, sidebar) | `navbar`, `drawer`, `menu` | `navbar bg-base-100 border-b`, `menu menu-vertical` | The 240px left rail is `drawer-side` content or a sticky `<aside>` with `menu`. |
+| Sidebar nav item | `menu` `menu-item` | `menu-active` for current page | Active item is dark bg + light text (the prototype's `aria-current="page"` style). |
+| User avatar | `avatar avatar-placeholder` | `w-8 rounded-full bg-accent text-accent-content` | Orange bg, white initials. |
+| Notifications bell | `btn btn-ghost btn-circle` + `badge` for unread count | `indicator indicator-item badge-error` | Standard notification pattern. |
+| **Top-bar search** | `input` | `input-bordered input-sm` inside a `label` with leading icon | Use `label` slot pattern for the search icon. |
+| **Workspace tabs (top)** | `tabs` | `tabs-lifted tabs-md` | The pinned Inbox tab uses a `<svg>` pin in place of the close X. |
+| **Workspace tabs (sidebar variant)** | `menu` + `menu-active` | `menu menu-vertical bg-base-100` | The sidebar-tabs preference swaps the `tabs` layout for a `menu`. |
+| **Tab close button** | `btn btn-ghost btn-xs btn-circle` | hidden until tab hover/active | Pure CSS hover; no JS. |
+| **Inbox header** | `prose` for the H1 + sub, plain layout for filters | | |
+| Filter dropdowns (Status, Type, Work) | `select` | `select select-bordered select-sm` | `<optgroup>` for the Status dropdown (Workflow / Internal flags). |
+| Sort dropdown | `select select-bordered select-sm` | | |
+| Docs in / out toggle chips | `btn` | `btn-sm btn-outline` + `btn-active` when on, or use `swap` for true binary toggles | The prototype uses `aria-pressed`-style chips — closest DaisyUI primitive is `btn btn-active`. |
+| **Saved-views row** | `tabs` | `tabs-bordered tabs-sm` | Tab strip with `<a>` per saved view + a `badge badge-sm` count beside each label. |
+| Saved view count badge | `badge badge-sm` | `badge-primary` when the view is active, default neutral otherwise | |
+| **Bulk action bar** | `alert` | `alert` with dark/neutral bg, links inside | Slides in when ≥1 row is selected. Use Alpine.js or HTMX class swap to show/hide. |
+| **Case row** | `card` (compact) or `table` row | `card card-bordered card-compact` for `standard`/`rich` density; `<tr>` inside `table table-sm` for `compact` density | Standard density is a card; compact is a true table for scanning. |
+| Row checkbox | `checkbox` | `checkbox-sm checkbox-primary` | Bulk-select. |
+| Status pill on the row | `badge` | `badge-md` + custom theme classes per status (e.g. `badge-status-a`, `badge-status-c`); generate from the Status table in §4.1 | DaisyUI's built-in semantic badges (`badge-primary`, `badge-success`, …) don't cover the 25 statuses; extend the theme. |
+| Work-type chips (Personal / Business) | `badge` or `btn btn-xs btn-outline` | `badge-outline` when not lit; `badge` with bg when lit | The "Personal 22–24" chip is `badge` with a leading SVG icon. |
+| Year sub-chip inside scope | `badge badge-sm badge-ghost` | Mono font-family override | |
+| **Doc-progress dots** | (no daisy primitive) | Custom — `<span>` with `rounded-full` Tailwind utilities + a `tooltip` wrapper | Each dot is wrapped in `<div class="tooltip" data-tip="…">` for the hover label. |
+| **Doc-progress bar variant** | `progress` | `progress-primary` with explicit `value`/`max` | Used in the case detail header and as a row-display preference. |
+| **Case detail — hero buttons** | `btn` | `btn btn-outline btn-sm` for Email/Edit; `btn btn-primary btn-sm` for "Move to next stage" | |
+| **Status pill in detail header** | `badge` | Same status classes as the row pill, but `badge-lg` | |
+| **Section card (Scope, Documents, Notes, Activity)** | `card` | `card card-bordered bg-base-100` | Each card has a `card-title` with a 4px accent bar (a `<span>` styled with `bg-primary w-1 h-4`). |
+| Scope card (Personal / Business) | `card` | `card-bordered`; lit = `bg-base-200`, dim = opacity-50 | Inside the parent Scope card. |
+| **Documents checklist row** | (no daisy primitive) | Custom — `flex` row with a `rounded-full` status icon + text + action links | The status icon: `badge badge-circle` with `Check`/`Clock` icon. |
+| Documents action link | `btn btn-ghost btn-sm` | with a leading `external-link` icon | One per action (Open form, Send reminder, Send DocuSign…). |
+| **Notes composer** | `textarea` | `textarea textarea-bordered` | + a `btn btn-primary btn-sm` for "Add note". |
+| Note item | `card card-compact` | `bg-base-200` | Avatar + body. |
+| Note author avatar | `avatar avatar-placeholder` | `w-6 rounded-full` — orange (`bg-accent`) for self, neutral (`bg-base-content`) for others | |
+| **Activity timeline** | (no daisy primitive) | Custom — `<ul>` with leading dot + 3-column flex (dot · message · timestamp) | DaisyUI v5 doesn't ship a "timeline-compact" — use a bordered list. |
+| **Side rail — Client section** | Plain key/value rows | | |
+| Email link | `link` | `link-primary` | |
+| **Side rail — Financial money grid** | `stat` / `stats` | `stats stats-vertical lg:stats-horizontal shadow-none bg-base-200` | DaisyUI's `stats` component is exactly this. The "Total tax debt" cell uses `bg-base-300` accent. |
+| **Side rail — Quick actions** | `btn` | 2×2 grid of `btn btn-outline btn-sm` with leading icon | |
+| **Side rail — Linked Systems** | `menu` or `card` list | `menu menu-sm` with each item as a `<li>` carrying an icon + title + sub + external-link arrow | |
+| **Side rail — Team** | `avatar` + `name` rows | `flex` rows with `avatar avatar-placeholder` + text block | |
+| **Bulk-action dialogs** (Reassign, Tag, Change status) | `modal` | `modal modal-bottom md:modal-middle` | Form inside; submit via HTMX. |
+| **Status-change menu** ("Move to next stage" alt) | `dropdown` | `dropdown dropdown-end` with a `menu` of allowed transitions | Driven by the `STATUS_TRANSITIONS` table. |
+| **Settings / preferences page** | `form-control`, `select`, `radio`, `toggle` | Standard DaisyUI form components | Where the live-tweak preferences from §6 live in production. |
+| **Empty state** ("No cases match these filters") | `card card-bordered text-center` | with subtle `bg-base-200` | The "Clear a filter…" hint is a `btn btn-link btn-sm`. |
+| **Tooltip on doc dots** | `tooltip` | `tooltip tooltip-top` | DaisyUI's native tooltip — `data-tip="…"`. |
+| **Divider** between side-rail sections | `divider` | thin gray line | |
+
+**Custom additions to the DaisyUI theme.** A few things in this app are out of scope for stock DaisyUI and need to be extended:
+
+1. **Status badges** — define `badge-status-a` through `badge-status-l` (plus the named flags) in `tailwind.config.js` under the `daisyui.themes` PTR theme, with the bg/fg colors from §4.1.
+2. **Action-bucket accent bars** — the small 4px-wide colored bar at the top-left of each section card. Just a Tailwind utility (`w-1 h-4 bg-primary rounded`); no DaisyUI primitive needed.
+3. **The doc-progress dots** — pure Tailwind, no DaisyUI primitive. Wrap each in a `tooltip` for the hover label.
+4. **Density variants on rows** — the `compact` / `standard` / `rich` distinction is just three different templates rendering the same model. Don't try to make it a single template with class switches.
+
+---
+
 ## 8. Open questions / decisions deferred to backend build
 
 1. **Status taxonomy split.** Should lettered workflow + internal flags live in one `status` field or split into `status` + `tags[]`? The UI handles both today; the proposed schema in §3.2 splits them. Confirm before migration.
